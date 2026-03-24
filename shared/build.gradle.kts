@@ -6,6 +6,8 @@ plugins {
 }
 
 kotlin {
+    applyDefaultHierarchyTemplate()
+
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
@@ -16,8 +18,27 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
-        commonMain.dependencies {
+        val commonMain by getting {
+            kotlin.setSrcDirs(listOf("src/commonMain/kotlin"))
         }
+
+        val domainMain by creating {
+            dependsOn(commonMain)
+            kotlin.srcDir("src/domainMain/kotlin")
+        }
+
+        val dataMain by creating {
+            dependsOn(domainMain)
+            kotlin.srcDir("src/dataMain/kotlin")
+            dependencies {
+                implementation(project(":core_network"))
+                implementation(project(":core_database"))
+                implementation(libs.kotlinx.coroutines.core)
+            }
+        }
+
+        androidMain.get().dependsOn(dataMain)
+        sourceSets.named("iosMain").configure { dependsOn(dataMain) }
     }
 }
 

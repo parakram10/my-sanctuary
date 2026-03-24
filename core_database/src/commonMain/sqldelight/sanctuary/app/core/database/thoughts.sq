@@ -1,0 +1,3 @@
+CREATE TABLE thoughts (
+    id TEXT NOT NULL PRIMARY KEY
+);
