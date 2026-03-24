@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Workout Tracker</string>
-    <string name="show_hello">Show hello</string>
-    <style name="Theme.WorkoutTrackerApplication" parent="android:Theme.Material.Light.NoActionBar"/>
+    <string name="app_name">Sanctuary</string>
+    <style name="Theme.Sanctuary" parent="android:Theme.Material.Light.NoActionBar"/>
 </resources>
