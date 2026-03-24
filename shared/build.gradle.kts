@@ -20,6 +20,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             kotlin.setSrcDirs(listOf("src/commonMain/kotlin"))
+            dependencies {
+                api(libs.koin.core)
+            }
         }
 
         val domainMain by creating {

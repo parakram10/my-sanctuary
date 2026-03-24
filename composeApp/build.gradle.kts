@@ -33,6 +33,7 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
+            implementation(libs.koin.compose)
             implementation(project(":shared"))
             implementation(project(":core_ui"))
             implementation(project(":feature_dump"))
@@ -43,6 +44,7 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.core.ktx)
+            implementation(libs.koin.android)
         }
     }
 }
