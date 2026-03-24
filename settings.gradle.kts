@@ -14,5 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "WorkoutTrackerApplication"
+rootProject.name = "Sanctuary"
+include(":shared")
 include(":composeApp")

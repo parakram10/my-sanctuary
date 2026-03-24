@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="workouttrackerapplication.composeapp"
+    package="sanctuary.app"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -9,10 +9,10 @@
         android:targetSdkVersion="35" />
 
     <permission
-        android:name="workouttrackerapplication.composeapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="sanctuary.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="workouttrackerapplication.composeapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="sanctuary.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
         android:allowBackup="true"
@@ -23,24 +23,29 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher_vector"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WorkoutTrackerApplication" >
+        android:testOnly="true"
+        android:theme="@style/Theme.Sanctuary" >
         <activity
-            android:name="workouttrackerapplication.composeapp.MainActivity"
+            android:name="sanctuary.app.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.WorkoutTrackerApplication" >
+            android:theme="@style/Theme.Sanctuary" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="androidx.compose.ui.tooling.PreviewActivity"
-            android:exported="true" />
+
+        <uses-library
+            android:name="androidx.window.extensions"
+            android:required="false" />
+        <uses-library
+            android:name="androidx.window.sidecar"
+            android:required="false" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="workouttrackerapplication.composeapp.androidx-startup"
+            android:authorities="sanctuary.app.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"
