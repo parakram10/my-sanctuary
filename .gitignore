@@ -1,0 +1,27 @@
+# Gradle
+.gradle/
+**/build/
+
+# Local configuration
+local.properties
+
+# Android / packaging
+*.apk
+*.aab
+*.dex
+*.ap_
+*.class
+
+# Kotlin
+.kotlin/
+
+# IntelliJ / Android Studio (keep shared run configs if you use them)
+.idea/
+*.iml
+
+# Xcode / CocoaPods (if used from KMP)
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# OS
+.DS_Store

@@ -15,5 +15,14 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Sanctuary"
+
 include(":shared")
+include(":core_network")
+include(":core_database")
+include(":core_ui")
+
+include(":feature_dump")
+include(":feature_summary")
+include(":feature_history")
+
 include(":composeApp")

@@ -9,6 +9,8 @@ plugins {
 }
 
 kotlin {
+    applyDefaultHierarchyTemplate()
+
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
@@ -32,6 +34,10 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.ui)
             implementation(project(":shared"))
+            implementation(project(":core_ui"))
+            implementation(project(":feature_dump"))
+            implementation(project(":feature_summary"))
+            implementation(project(":feature_history"))
         }
         androidMain.dependencies {
             implementation(compose.preview)

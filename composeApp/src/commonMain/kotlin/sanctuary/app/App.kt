@@ -4,32 +4,28 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import sanctuary.app.shared.Greeting
+import sanctuary.app.core.ui.theme.SanctuaryTheme
+import sanctuary.app.feature.dump.presentation.screen.MentalDumpHomePlaceholder
+import sanctuary.app.feature.history.presentation.screen.HistoryHomePlaceholder
+import sanctuary.app.feature.summary.presentation.screen.SummaryHomePlaceholder
 
 @Composable
 fun App() {
-    MaterialTheme {
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-            SanctuaryHomeScreen()
+    SanctuaryTheme {
+        Surface(modifier = Modifier.fillMaxSize()) {
+            SanctuaryRootShell()
         }
     }
 }
 
 @Composable
-private fun SanctuaryHomeScreen() {
-    var banner by remember { mutableStateOf<String?>(null) }
+private fun SanctuaryRootShell() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -38,21 +34,11 @@ private fun SanctuaryHomeScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = Greeting().greet(),
-            style = MaterialTheme.typography.bodyLarge,
+            text = "Sanctuary",
             modifier = Modifier.padding(bottom = 16.dp),
         )
-        banner?.let { msg ->
-            Text(
-                text = msg,
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(bottom = 8.dp),
-            )
-        }
-        Button(
-            onClick = { banner = "Welcome to Sanctuary" },
-        ) {
-            Text("Enter Sanctuary")
-        }
+        MentalDumpHomePlaceholder()
+        SummaryHomePlaceholder()
+        HistoryHomePlaceholder()
     }
 }
