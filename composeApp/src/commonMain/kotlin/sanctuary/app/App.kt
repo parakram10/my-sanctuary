@@ -10,16 +10,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.koin.compose.KoinApplication
 import sanctuary.app.core.ui.theme.SanctuaryTheme
+import sanctuary.app.di.allAppModules
 import sanctuary.app.feature.dump.presentation.screen.MentalDumpHomePlaceholder
 import sanctuary.app.feature.history.presentation.screen.HistoryHomePlaceholder
 import sanctuary.app.feature.summary.presentation.screen.SummaryHomePlaceholder
 
 @Composable
 fun App() {
-    SanctuaryTheme {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            SanctuaryRootShell()
+    KoinApplication(application = {
+        modules(allAppModules())
+    }) {
+        SanctuaryTheme {
+            Surface(modifier = Modifier.fillMaxSize()) {
+                SanctuaryRootShell()
+            }
         }
     }
 }
