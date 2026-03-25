@@ -32,6 +32,12 @@ object SanctuaryPalette {
     val Inverted = Color(0xFF0D0D0D)
     val OnInverted = Color(0xFFFFFFFF)
 
+    /** Bottom nav selected icon, label, and indicator (Material serene slate). */
+    val BottomNavActive = Color(0xFF48636F)
+
+    /** Bottom nav unselected icon and label (muted blue-gray). */
+    val BottomNavInactive = Color(0xFF9DB0B8)
+
     val Error = Color(0xFFB3261E)
     val OnError = Color(0xFFFFFFFF)
     val ErrorContainer = Color(0xFFF9DEDC)
