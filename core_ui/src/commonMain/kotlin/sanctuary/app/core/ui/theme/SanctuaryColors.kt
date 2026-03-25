@@ -38,7 +38,7 @@ object SanctuaryPalette {
     val OnErrorContainer = Color(0xFF410E0B)
 }
 
-fun sanctuaryLightColorScheme() = lightColorScheme(
+val SanctuaryLightColorScheme = lightColorScheme(
     primary = SanctuaryPalette.PrimaryDark,
     onPrimary = Color.White,
     primaryContainer = SanctuaryPalette.Primary,
@@ -75,7 +75,7 @@ fun sanctuaryLightColorScheme() = lightColorScheme(
     inversePrimary = SanctuaryPalette.PrimaryLight,
 )
 
-fun sanctuaryDarkColorScheme() = darkColorScheme(
+val SanctuaryDarkColorScheme = darkColorScheme(
     primary = SanctuaryPalette.PrimaryLight,
     onPrimary = SanctuaryPalette.PrimaryDark,
     primaryContainer = SanctuaryPalette.PrimaryDark,
