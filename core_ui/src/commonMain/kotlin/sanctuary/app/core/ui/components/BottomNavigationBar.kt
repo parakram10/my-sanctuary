@@ -85,7 +85,7 @@ fun BottomNavigationBar(
     selected: BottomNavDestination,
     onDestinationSelected: (BottomNavDestination) -> Unit,
     modifier: Modifier = Modifier,
-    barColor: Color = Color.White,
+    barColor: Color = MaterialTheme.colorScheme.surface,
 ) {
     val active = SanctuaryPalette.BottomNavActive
     val inactive = SanctuaryPalette.BottomNavInactive
