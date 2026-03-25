@@ -9,7 +9,7 @@ fun SanctuaryTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
-    val colorScheme = if (darkTheme) sanctuaryDarkColorScheme() else sanctuaryLightColorScheme()
+    val colorScheme = if (darkTheme) SanctuaryDarkColorScheme else SanctuaryLightColorScheme
 
     MaterialTheme(
         colorScheme = colorScheme,
