@@ -14,16 +14,13 @@ actual class StringResolver {
             table = null
         )
 
-        return if (args.isEmpty()) {
-            localized
-        } else {
-            args.fold(localized) { acc, arg ->
-                acc
-                    .replaceFirst("%s", arg.toString())
-                    .replaceFirst("%@", arg.toString())
-                    .replaceFirst("%d", arg.toString())
-                    .replaceFirst("%f", arg.toString())
-            }
+        if (args.isEmpty()) return localized
+
+        val placeholder = Regex("%(?:\\d+\\$)?[@sdf]")
+        var result = localized
+        for (arg in args) {
+            result = placeholder.replaceFirst(result, Regex.escapeReplacement(arg.toString()))
         }
+        return result
     }
 }
