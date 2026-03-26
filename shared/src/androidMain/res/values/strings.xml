@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboarding_page_1_title">Untangle your mind</string>
+    <string name="onboarding_page_1_body">Our AI helps you find patterns and clarity in your thoughts, giving you a path forward when you feel overwhelmed.</string>
+    <string name="onboarding_page_2_title">Your Thoughts are Your Own</string>
+    <string name="onboarding_page_2_body">Everything you say in the Sanctuary is encrypted and stored only on your device. We don\'t have access to your data, and we never will.</string>
+    <string name="onboarding_page_3_title">A Space to Unload</string>
+    <string name="onboarding_page_3_body">Start a session and say whatever is on your mind. No filters, no judgments, just you and your thoughts.</string>
+</resources>
