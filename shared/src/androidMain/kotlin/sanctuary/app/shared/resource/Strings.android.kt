@@ -1,26 +1,26 @@
 package sanctuary.app.shared.resource
 
 import android.content.Context
-import sanctuary.app.shared.R
 
 actual class StringResolver {
 
     constructor()
 
     constructor(context: Context) : this() {
-        appContext = context.applicationContext
+        initialize(context)
     }
 
     actual fun resolve(
         key: AppString,
         vararg args: Any,
     ): String {
-        val ctx = appContext
-            ?: throw IllegalStateException("StringResolver has not been initialized with a Context")
-
-        val resId = when (key) {
-            AppString.ONBOARDING_PAGE_1_TITLE -> R.string.onboarding_page1_title
-        }
+        val ctx = appContext ?: return key.resourceKey
+        val resId = ctx.resources.getIdentifier(
+            key.resourceKey,
+            "string",
+            ctx.packageName,
+        )
+        if (resId == 0) return key.resourceKey
 
         return if (args.isEmpty()) {
             ctx.getString(resId)
