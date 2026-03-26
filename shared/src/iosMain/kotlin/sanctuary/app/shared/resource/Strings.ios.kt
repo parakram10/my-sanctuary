@@ -9,8 +9,8 @@ actual class StringResolver {
         vararg args: Any
     ): String {
         val localized = NSBundle.mainBundle.localizedStringForKey(
-            key = key.key,
-            value = key.key,
+            key = key.name,
+            value = key.name,
             table = null
         )
 
