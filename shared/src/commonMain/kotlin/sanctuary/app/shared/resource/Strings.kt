@@ -5,6 +5,6 @@ expect class StringResolver {
     fun resolve(key: AppString, vararg args: Any): String
 }
 
-enum class AppString{
-    ONBOARDING_PAGE_1_TITLE
+enum class AppString(val key: String) {
+    ONBOARDING_PAGE_1_TITLE("onboarding_page1_title")
 }
