@@ -7,5 +7,6 @@ expect fun platformAppModule(): Module
 
 fun allAppModules(): List<Module> = buildList {
     addAll(sharedKoinModules())
+    add(appModule)
     add(platformAppModule())
 }
