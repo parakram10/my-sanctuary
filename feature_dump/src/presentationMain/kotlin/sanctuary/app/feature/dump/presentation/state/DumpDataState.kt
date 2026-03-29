@@ -7,6 +7,9 @@ data class DumpDataState(
     val elapsedMs: Long = 0L,
     val currentFilePath: String? = null,
     val recordings: List<Recording> = emptyList(),
+    val selectedRecordingId: String? = null,
+    val showPlaybackDialog: Boolean = false,
+    val isPlayingSelectedRecording: Boolean = false,
     val permissionGranted: Boolean = false,
     val amplitudes: List<Float> = emptyList(),
 )

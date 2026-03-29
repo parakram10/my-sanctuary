@@ -5,6 +5,9 @@ data class DumpViewState(
     val isSaving: Boolean = false,
     val timerText: String = "00:00",
     val recordings: List<RecordingUiModel> = emptyList(),
+    val selectedRecording: RecordingUiModel? = null,
+    val showPlaybackDialog: Boolean = false,
+    val isPlayingSelectedRecording: Boolean = false,
     val amplitudes: List<Float> = emptyList(),
     val showPermissionRationale: Boolean = false,
 )

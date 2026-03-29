@@ -7,11 +7,13 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import sanctuary.app.feature.dump.domain.audio.AudioRecorder
+import java.io.File
 
 internal class AndroidAudioRecorder(private val context: Context) : AudioRecorder {
 
     private var recorder: MediaRecorder? = null
     private var recording = false
+    private var currentOutputFilePath: String? = null
 
     override fun startRecording(outputFilePath: String) {
         val localRecorder = createMediaRecorder().apply {
@@ -22,6 +24,7 @@ internal class AndroidAudioRecorder(private val context: Context) : AudioRecorde
             setAudioEncodingBitRate(128000)
             setOutputFile(outputFilePath)
         }
+        currentOutputFilePath = outputFilePath
 
         runCatching {
             localRecorder.prepare()
@@ -33,6 +36,7 @@ internal class AndroidAudioRecorder(private val context: Context) : AudioRecorde
             // Ensure resources are freed if starting the recorder fails
             runCatching { localRecorder.release() }
             recording = false
+            currentOutputFilePath = null
         }
     }
 
@@ -43,6 +47,7 @@ internal class AndroidAudioRecorder(private val context: Context) : AudioRecorde
             release()
         }
         recorder = null
+        currentOutputFilePath = null
     }
 
     override fun cancelRecording() {
@@ -52,6 +57,8 @@ internal class AndroidAudioRecorder(private val context: Context) : AudioRecorde
             release()
         }
         recorder = null
+        currentOutputFilePath?.let { File(it).delete() }
+        currentOutputFilePath = null
     }
 
     override fun isRecording(): Boolean = recording

@@ -8,13 +8,9 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -33,7 +29,6 @@ import sanctuary.core_ui.generated.resources.mic
 @Composable
 fun ConcentricMicrophoneIcon(
     isRecording: Boolean,
-    timerText: String,
     modifier: Modifier = Modifier,
 ) {
     val infiniteTransition = rememberInfiniteTransition()
@@ -47,10 +42,10 @@ fun ConcentricMicrophoneIcon(
     )
 
     Column(
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Box(
-            modifier = modifier,
             contentAlignment = Alignment.Center,
         ) {
             // Outermost ring
@@ -93,19 +88,6 @@ fun ConcentricMicrophoneIcon(
                     )
                 }
             }
-        }
-
-        Spacer(modifier = Modifier.height(SanctuaryDimens.space12))
-
-        // Timer — visible only when recording
-        if (isRecording) {
-            Text(
-                text = "• $timerText",
-                style = MaterialTheme.typography.titleLarge.copy(
-                    fontSize = 28.sp,
-                    color = SanctuaryPalette.OnNeutral,
-                ),
-            )
         }
     }
 }

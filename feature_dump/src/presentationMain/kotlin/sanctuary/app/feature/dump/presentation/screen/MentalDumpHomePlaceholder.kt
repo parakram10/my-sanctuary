@@ -5,10 +5,12 @@ import androidx.compose.runtime.Composable
 @Composable
 fun MentalDumpHomePlaceholder(
     onNavigateBack: () -> Unit = {},
-    onRequestPermission: () -> Unit = {},
+    onViewAllRecordings: () -> Unit = {},
+    onRequestPermission: (onPermissionResult: (Boolean) -> Unit) -> Unit = { onResult -> onResult(false) },
 ) {
     DumpRecordingScreen(
         onNavigateBack = onNavigateBack,
+        onViewAllRecordings = onViewAllRecordings,
         onRequestPermission = onRequestPermission,
     )
 }

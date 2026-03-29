@@ -4,7 +4,9 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import sanctuary.app.feature.dump.data.preferences.PermissionsPreferences
 import sanctuary.app.feature.dump.domain.audio.AudioFileProvider
+import sanctuary.app.feature.dump.domain.audio.AudioPlayer
 import sanctuary.app.feature.dump.domain.audio.AudioRecorder
 import sanctuary.app.feature.dump.domain.model.Recording
 import sanctuary.app.feature.dump.domain.usecase.DeleteRecordingUseCase
@@ -17,35 +19,45 @@ import sanctuary.app.feature.dump.presentation.state.DumpViewState
 import sanctuary.app.feature.dump.presentation.state.RecordingStatus
 import sanctuary.app.feature.dump.presentation.state.RecordingUiModel
 import sanctuary.app.core.ui.viewmodel.BaseStateMviViewModel
+import sanctuary.app.feature.dump.presentation.utils.TimeUtils
+import sanctuary.app.feature.dump.presentation.utils.TimeUtils.toTimerText
 import sanctuary.app.shared.domain.usecase.UsecaseResult
-import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
 
 class DumpViewModel(
     private val getRecordingsUseCase: GetRecordingsUseCase,
     private val saveRecordingUseCase: SaveRecordingUseCase,
     private val deleteRecordingUseCase: DeleteRecordingUseCase,
     private val audioRecorder: AudioRecorder,
+    private val audioPlayer: AudioPlayer,
     private val audioFileProvider: AudioFileProvider,
+    private val permissionsPreferences: PermissionsPreferences,
 ) : BaseStateMviViewModel<DumpViewIntent, DumpDataState, DumpViewState, DumpSideEffect>() {
 
     private var timerJob: Job? = null
     private var amplitudeJob: Job? = null
+    private var playbackMonitorJob: Job? = null
 
-    override fun initialDataState(): DumpDataState = DumpDataState()
+    init {
+        loadRecordings()
+    }
+
+    override fun initialDataState(): DumpDataState = DumpDataState(
+        permissionGranted = permissionsPreferences.isMicrophonePermissionGranted()
+    )
 
     override suspend fun convertToUiState(dataState: DumpDataState): DumpViewState = DumpViewState(
         isRecording = dataState.recordingStatus == RecordingStatus.Recording,
         isSaving = dataState.recordingStatus == RecordingStatus.Saving,
         timerText = dataState.elapsedMs.toTimerText(),
         recordings = dataState.recordings.map { it.toUiModel() },
+        selectedRecording = dataState.selectedRecordingId
+            ?.let { id -> dataState.recordings.firstOrNull { it.id == id } }
+            ?.toUiModel(),
+        showPlaybackDialog = dataState.showPlaybackDialog,
+        isPlayingSelectedRecording = dataState.isPlayingSelectedRecording,
         amplitudes = dataState.amplitudes,
         showPermissionRationale = !dataState.permissionGranted,
     )
-
-    override fun onViewStateActive() {
-        loadRecordings()
-    }
 
     override fun processIntent(intent: DumpViewIntent) {
         when (intent) {
@@ -53,6 +65,9 @@ class DumpViewModel(
             is DumpViewIntent.StopRecording -> handleStopRecording()
             is DumpViewIntent.CancelRecording -> handleCancelRecording()
             is DumpViewIntent.DismissScreen -> emitSideEffect(DumpSideEffect.NavigateBack)
+            is DumpViewIntent.OpenRecording -> handleOpenRecording(intent.id)
+            is DumpViewIntent.ToggleSelectedRecordingPlayback -> handleToggleSelectedPlayback()
+            is DumpViewIntent.DismissPlaybackDialog -> handleDismissPlaybackDialog()
             is DumpViewIntent.DeleteRecording -> handleDeleteRecording(intent.id)
             is DumpViewIntent.PermissionResult -> handlePermissionResult(intent.granted)
         }
@@ -139,7 +154,60 @@ class DumpViewModel(
         }
     }
 
+    private fun handleOpenRecording(id: String) {
+        val recording = dataState.value.recordings.firstOrNull { it.id == id } ?: return
+        playbackMonitorJob?.cancel()
+        audioPlayer.stop()
+        val started = audioPlayer.play(recording.filePath)
+        updateState {
+            it.copy(
+                selectedRecordingId = id,
+                showPlaybackDialog = true,
+                isPlayingSelectedRecording = started,
+            )
+        }
+        if (started) {
+            monitorPlaybackCompletion()
+        } else {
+            emitSideEffect(DumpSideEffect.ShowError("Unable to play this recording"))
+        }
+    }
+
+    private fun handleToggleSelectedPlayback() {
+        val state = dataState.value
+        val selectedId = state.selectedRecordingId ?: return
+        val recording = state.recordings.firstOrNull { it.id == selectedId } ?: return
+
+        if (state.isPlayingSelectedRecording) {
+            playbackMonitorJob?.cancel()
+            audioPlayer.stop()
+            updateState { it.copy(isPlayingSelectedRecording = false) }
+            return
+        }
+
+        val started = audioPlayer.play(recording.filePath)
+        updateState { it.copy(isPlayingSelectedRecording = started) }
+        if (started) {
+            monitorPlaybackCompletion()
+        } else {
+            emitSideEffect(DumpSideEffect.ShowError("Unable to play this recording"))
+        }
+    }
+
+    private fun handleDismissPlaybackDialog() {
+        playbackMonitorJob?.cancel()
+        audioPlayer.stop()
+        updateState {
+            it.copy(
+                selectedRecordingId = null,
+                showPlaybackDialog = false,
+                isPlayingSelectedRecording = false,
+            )
+        }
+    }
+
     private fun handlePermissionResult(granted: Boolean) {
+        permissionsPreferences.setMicrophonePermissionGranted(granted)
         updateState { it.copy(permissionGranted = granted) }
         if (granted) handleStartRecording()
     }
@@ -164,31 +232,30 @@ class DumpViewModel(
         }
     }
 
-    private fun Long.toTimerText(): String {
-        val totalSeconds = this / 1000
-        val minutes = totalSeconds / 60
-        val seconds = totalSeconds % 60
-        return "${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}"
+    private fun monitorPlaybackCompletion() {
+        playbackMonitorJob?.cancel()
+        playbackMonitorJob = repeatOnStarted {
+            while (audioPlayer.isPlaying()) {
+                delay(250)
+            }
+            updateState { it.copy(isPlayingSelectedRecording = false) }
+        }
     }
 
     private fun Recording.toUiModel(): RecordingUiModel = RecordingUiModel(
         id = id,
         title = title ?: "Voice Note",
         duration = durationMs.toTimerText(),
-        date = formatEpochMs(createdAt),
+        date = TimeUtils.formatEpochMs(createdAt),
     )
 
-    private fun formatEpochMs(epochMs: Long): String {
-        val totalSeconds = epochMs / 1000
-        val minutes = (totalSeconds / 60) % 60
-        val hours = (totalSeconds / 3600) % 24
-        return "${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}"
-        // TODO: Replace with kotlinx-datetime for full date formatting (e.g. "Mar 29, 2026")
-    }
-
-    @OptIn(ExperimentalTime::class)
-    private fun currentEpochMs(): Long = Clock.System.now().toEpochMilliseconds()
+    private fun currentEpochMs(): Long = TimeUtils.currentEpochMs()
 
     private fun generateId(): String =
         "${currentEpochMs()}_${kotlin.random.Random.nextInt(10000, 99999)}"
+
+    override fun onDestroy() {
+        playbackMonitorJob?.cancel()
+        audioPlayer.stop()
+    }
 }

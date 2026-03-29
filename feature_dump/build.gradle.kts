@@ -69,9 +69,17 @@ kotlin {
         androidMain.get().dependsOn(presentationMain)
         androidMain.get().dependsOn(dataMain)
 
+        androidMain.dependencies {
+            implementation(libs.koin.android)
+            implementation(libs.sqldelight.android.driver)
+        }
+
         sourceSets.named("iosMain").configure {
             dependsOn(presentationMain)
             dependsOn(dataMain)
+            dependencies {
+                implementation(libs.sqldelight.native.driver)
+            }
         }
     }
 }
