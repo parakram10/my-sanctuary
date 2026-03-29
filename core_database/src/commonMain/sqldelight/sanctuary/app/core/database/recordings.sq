@@ -1,0 +1,24 @@
+CREATE TABLE recordings (
+    id TEXT NOT NULL PRIMARY KEY,
+    user_id TEXT,
+    file_path TEXT NOT NULL,
+    duration_ms INTEGER NOT NULL,
+    created_at INTEGER NOT NULL,
+    title TEXT
+);
+
+selectAll:
+SELECT * FROM recordings ORDER BY created_at DESC;
+
+selectByUserId:
+SELECT * FROM recordings WHERE user_id = ? ORDER BY created_at DESC;
+
+selectById:
+SELECT * FROM recordings WHERE id = ?;
+
+insert:
+INSERT INTO recordings (id, user_id, file_path, duration_ms, created_at, title)
+VALUES (?, ?, ?, ?, ?, ?);
+
+deleteById:
+DELETE FROM recordings WHERE id = ?;
