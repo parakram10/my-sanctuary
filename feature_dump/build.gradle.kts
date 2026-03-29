@@ -58,6 +58,8 @@ kotlin {
             dependencies {
                 implementation(project(":core_network"))
                 implementation(project(":core_database"))
+                implementation(libs.sqldelight.coroutines.extensions)
+                implementation(libs.kotlinx.coroutines.core)
             }
         }
 
