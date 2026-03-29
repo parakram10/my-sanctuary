@@ -119,6 +119,7 @@ class DumpViewModel(
         timerJob?.cancel()
         amplitudeJob?.cancel()
         audioRecorder.cancelRecording()
+        dataState.value.currentFilePath?.let { audioFileProvider.deleteFile(it) }
         updateState {
             it.copy(
                 recordingStatus = RecordingStatus.Idle,

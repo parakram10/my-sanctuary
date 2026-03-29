@@ -14,4 +14,8 @@ internal class AndroidAudioFileProvider(private val context: Context) : AudioFil
 
     override fun newRecordingFilePath(): String =
         "${recordingsDirectory()}/${System.currentTimeMillis()}.m4a"
+
+    override fun deleteFile(path: String) {
+        File(path).delete()
+    }
 }
