@@ -43,12 +43,21 @@ Queries: `selectAll`, `selectByUserId`, `selectById`, `insert`, `deleteById`
 
 ### Phase 3: Data Layer (`feature_dump/src/dataMain`)
 
+The data layer is structured for **local-first with future remote sync**. The repository mediates between a local data source (SQLDelight) and a remote data source (Ktor — to be implemented when the backend is ready). All reads/writes go through the repository, so the domain layer never changes when remote is added.
+
 | File | Purpose |
 |---|---|
 | `.../data/datasource/RecordingLocalDataSource.kt` | Interface wrapping SQLDelight queries |
 | `.../data/datasource/RecordingLocalDataSourceImpl.kt` | Implementation using `SanctuaryDatabase.recordingsQueries` |
+| `.../data/datasource/RecordingRemoteDataSource.kt` | Interface for remote API calls (stub now, implemented when backend exists) |
 | `.../data/mapper/RecordingMapper.kt` | Maps SQLDelight generated class ↔ domain `Recording` |
-| `.../data/repository/RecordingRepositoryImpl.kt` | Implements `RecordingRepository` |
+| `.../data/repository/RecordingRepositoryImpl.kt` | Implements `RecordingRepository` — local-first: always writes to local, remote sync deferred |
+
+**Future remote sync strategy (when backend is ready):**
+- `RecordingRemoteDataSource` implemented via `core_network` (Ktor client already set up)
+- Repository uploads audio file + metadata after local save (fire-and-forget or queued sync)
+- Add `sync_status` column to `recordings` table (`PENDING`, `SYNCED`, `FAILED`) to track upload state
+- User-scoped via `user_id` (already in schema) — remote API will filter by authenticated user
 
 ### Phase 4: Audio Recording Abstraction (expect/actual)
 
