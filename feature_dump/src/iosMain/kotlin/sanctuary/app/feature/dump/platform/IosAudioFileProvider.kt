@@ -33,4 +33,9 @@ internal class IosAudioFileProvider : AudioFileProvider {
         val timestamp = NSDate().timeIntervalSince1970.toLong()
         return "${recordingsDirectory()}/$timestamp.m4a"
     }
+
+    @OptIn(ExperimentalForeignApi::class)
+    override fun deleteFile(path: String) {
+        NSFileManager.defaultManager.removeItemAtPath(path, error = null)
+    }
 }

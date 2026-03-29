@@ -14,17 +14,26 @@ internal class AndroidAudioRecorder(private val context: Context) : AudioRecorde
     private var recording = false
 
     override fun startRecording(outputFilePath: String) {
-        recorder = createMediaRecorder().apply {
+        val localRecorder = createMediaRecorder().apply {
             setAudioSource(MediaRecorder.AudioSource.MIC)
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
             setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
             setAudioSamplingRate(44100)
             setAudioEncodingBitRate(128000)
             setOutputFile(outputFilePath)
-            prepare()
-            start()
         }
-        recording = true
+
+        runCatching {
+            localRecorder.prepare()
+            localRecorder.start()
+        }.onSuccess {
+            recorder = localRecorder
+            recording = true
+        }.onFailure {
+            // Ensure resources are freed if starting the recorder fails
+            runCatching { localRecorder.release() }
+            recording = false
+        }
     }
 
     override fun stopRecording() {
