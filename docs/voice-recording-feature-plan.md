@@ -9,7 +9,9 @@ Sanctuary needs a voice recording screen as the core "mental dump" feature — l
 - **Module**: `feature_dump` (already scaffolded with correct layered source sets)
 - **Buttons**: "Stop Recording" + "Cancel" (matching screenshot)
 - **User scoping**: Add nullable `user_id` column now, populate when auth is built
-- **Recordings list**: Recent recordings below controls on dump screen + full list in History tab
+- **Recordings list**: Moved to separate `RecordingHistoryScreen` (full list) — accessible via navigation
+- **Recording playback**: Dialog-based playback with Play/Stop controls
+- **UI Theme**: Gradient background (light blue → light pink), timer in pill-shaped card
 
 ---
 
@@ -80,14 +82,18 @@ The data layer is structured for **local-first with future remote sync**. The re
 ### Phase 5: Presentation — MVI State (`feature_dump/src/presentationMain`)
 
 **Intents** (`DumpViewIntent`):
-- `StartRecording`, `StopRecording`, `CancelRecording`, `DismissScreen`, `DeleteRecording(id)`, `LoadRecordings`, `PermissionResult(granted: Boolean)`
+- Recording: `StartRecording`, `StopRecording`, `CancelRecording`
+- Playback: `OpenRecording(id)`, `ToggleSelectedRecordingPlayback`, `DismissPlaybackDialog`, `DeleteRecording(id)`
+- Navigation: `DismissScreen`, `PermissionResult(granted: Boolean)`
 
 **DataState** (`DumpDataState`):
 - `recordingStatus: RecordingStatus` (Idle, Recording, Saving)
 - `elapsedMs: Long`, `currentFilePath: String?`, `recordings: List<Recording>`, `permissionGranted: Boolean`, `amplitudes: List<Float>`
+- Playback: `selectedRecordingId: String?`, `showPlaybackDialog: Boolean`, `isPlayingSelectedRecording: Boolean`
 
 **ViewState** (`DumpViewState`):
-- `isRecording: Boolean`, `timerText: String` ("MM:SS"), `recordings: List<RecordingUiModel>`, `amplitudes: List<Float>`
+- `isRecording: Boolean`, `isSaving: Boolean`, `timerText: String` ("MM:SS"), `recordings: List<RecordingUiModel>`, `amplitudes: List<Float>`
+- `selectedRecording: RecordingUiModel?`, `showPlaybackDialog: Boolean`, `isPlayingSelectedRecording: Boolean`, `showPermissionRationale: Boolean`
 
 **SideEffects** (`DumpSideEffect`):
 - `RequestMicrophonePermission`, `NavigateBack`, `ShowError(message)`
@@ -107,24 +113,44 @@ Key logic:
 
 ### Phase 7: UI Composables (`feature_dump/src/presentationMain`)
 
-**Replace** existing `MentalDumpHomePlaceholder.kt` with:
+**Main screens:**
 
 | File | Purpose |
 |---|---|
-| `.../screen/DumpRecordingScreen.kt` | Main screen — header bar, microphone icon, timer, waveform, buttons, recent recordings list |
-| `.../screen/components/ConcentricMicrophoneIcon.kt` | Microphone icon centered in 2-3 concentric semi-transparent circles (Canvas/layered Box) |
-| `.../screen/components/WaveformVisualizer.kt` | Canvas drawing vertical bars from amplitude list, animated during recording |
-| `.../screen/components/RecordingListItem.kt` | Card showing recording title, duration, date |
+| `.../screen/DumpRecordingScreen.kt` | Recording screen — header, microphone icon, timer card, waveform, buttons; includes playback dialog |
+| `.../screen/RecordingHistoryScreen.kt` | History of all recordings — list of RecordingListItems with delete capability |
+| `.../screen/MentalDumpHomePlaceholder.kt` | Wrapper that routes to DumpRecordingScreen |
 
-**Screen layout** (top to bottom):
-1. Top bar: "ONLY YOU CAN HEAR THIS" + X close button
-2. Concentric circles with mic icon + "• MM:SS" timer
-3. Waveform visualizer
-4. "Let it out." text
-5. "Stop Recording" button (SanctuaryButton) — visible only when recording
-6. "CANCEL" text button — visible only when recording
-7. Start recording button (mic icon) — visible when idle
-8. Recent recordings list (LazyColumn of RecordingListItem, limited to ~3-5 items)
+**Components:**
+
+| File | Purpose |
+|---|---|
+| `.../components/ConcentricMicrophoneIcon.kt` | Mic icon in concentric circles with pulse animation when recording |
+| `.../components/TimerCard.kt` | Pill-shaped card with red dot + "MM:SS" timer (visible only when recording) |
+| `.../components/WaveformVisualizer.kt` | Canvas with vertical bars from amplitude data, animates during recording |
+| `.../components/RecordingListItem.kt` | Card showing recording title, duration, recorded date; click to play, delete button |
+
+**DumpRecordingScreen layout** (top to bottom):
+1. Top bar: "ONLY YOU CAN HEAR THIS" + lock icon + X close button (gradient background)
+2. Concentric circles with mic icon
+3. Timer card (pill shape, red dot + time) — visible only when recording
+4. Waveform visualizer (30 bars, gray)
+5. "Let it out." heading
+6. "Stop Recording" button (SanctuaryButton, dark) — visible only when recording
+7. "CANCEL" text button — visible only when recording
+8. "Start Recording" button — visible when idle
+9. **Recent recordings section** (visible if recordings exist):
+   - Header: "RECENT" label + "See all" button (clickable, links to RecordingHistoryScreen)
+   - Last 3 recordings as RecordingListItem cards (click to play, delete per item)
+10. **Playback dialog** (separate AlertDialog):
+    - Title: recording title
+    - Body: duration + recorded date
+    - Actions: Play/Stop button + Close button
+
+**RecordingHistoryScreen layout** (top to bottom):
+1. Top bar: back arrow + "RECORDINGS" title
+2. Full list of recordings (LazyColumn) with delete per item
+3. Empty state: "No recordings yet" when list is empty
 
 ### Phase 8: Dependency Injection (Koin)
 
@@ -155,16 +181,38 @@ Update `composeApp/src/commonMain/kotlin/sanctuary/app/App.kt`:
 
 ## Critical Files to Modify
 
-- `core_database/src/commonMain/sqldelight/.../recordings.sq` — **new**
-- `feature_dump/src/domainMain/kotlin/...` — **new** (model, repository interface, use cases)
-- `feature_dump/src/dataMain/kotlin/...` — **new** (datasource, repository impl, expect classes)
-- `feature_dump/src/androidMain/kotlin/...` — **new** (actual AudioRecorder, AudioFileProvider)
-- `feature_dump/src/iosMain/kotlin/...` — **new** (actual AudioRecorder, AudioFileProvider)
-- `feature_dump/src/presentationMain/kotlin/...` — **replace** placeholder with real screen + ViewModel
-- `composeApp/src/commonMain/kotlin/sanctuary/app/App.kt` — **modify** (navigation + dump screen)
-- `composeApp/src/commonMain/kotlin/sanctuary/app/di/PlatformKoinModule.kt` — **modify** (add dump modules)
-- `composeApp/src/androidMain/AndroidManifest.xml` — **modify** (add RECORD_AUDIO permission)
-- `iosApp/iosApp/Info.plist` — **modify** (add NSMicrophoneUsageDescription)
+### Database & Domain
+- `core_database/src/commonMain/sqldelight/.../recordings.sq` — ✅ **Done** (schema with queries)
+- `feature_dump/src/domainMain/kotlin/...` — ✅ **Done** (model, repository, use cases, audio interfaces)
+
+### Data Layer
+- `feature_dump/src/dataMain/kotlin/...` — ✅ **Done** (datasource, repository impl, mappers, audio expect)
+- `feature_dump/src/androidMain/kotlin/...` — ✅ **Done** (AudioRecorder, AudioPlayer, AudioFileProvider actual)
+- `feature_dump/src/iosMain/kotlin/...` — ✅ **Done** (AudioRecorder, AudioPlayer, AudioFileProvider actual)
+
+### Presentation Layer
+- `feature_dump/src/presentationMain/kotlin/...` — ✅ **Done**
+  - `DumpViewModel.kt` — MVI ViewModel with recording + playback logic
+  - `DumpRecordingScreen.kt` — Main recording UI with gradient, timer card, waveform, playback dialog
+  - `RecordingHistoryScreen.kt` — Full recordings list (NEW)
+  - `state/` — MVI state classes (intents, data state, view state, side effects) (UPDATED)
+  - `utils/TimeUtils.kt` — Date/time formatting utilities
+  - Components: `ConcentricMicrophoneIcon.kt`, `TimerCard.kt` (NEW), `WaveformVisualizer.kt`, `RecordingListItem.kt`
+
+### DI & App Integration
+- `feature_dump/src/presentationMain/kotlin/.../di/DumpPresentationModule.kt` — ✅ **Done** (viewModel registration)
+- `feature_dump/src/dataMain/kotlin/.../di/DumpDataModule.kt` — ✅ **Done** (datasource, repository)
+- `feature_dump/src/domainMain/kotlin/.../di/DumpDomainModule.kt` — ✅ **Done** (use cases)
+- `feature_dump/src/androidMain/kotlin/.../di/DumpPlatformModule.android.kt` — ✅ **Done** (audio impls)
+- `feature_dump/src/iosMain/kotlin/.../di/DumpPlatformModule.ios.kt` — ✅ **Done** (audio impls)
+- `composeApp/src/commonMain/kotlin/sanctuary/app/App.kt` — ⚠️ **Pending** (navigation integration)
+- `composeApp/src/commonMain/kotlin/sanctuary/app/di/PlatformKoinModule.kt` — ✅ **Done** (module aggregation)
+- `composeApp/src/androidMain/kotlin/sanctuary/app/di/PlatformKoinModule.android.kt` — ✅ **Done**
+- `composeApp/src/iosMain/kotlin/sanctuary/app/di/PlatformKoinModule.ios.kt` — ✅ **Done**
+
+### Platform Manifests
+- `composeApp/src/androidMain/AndroidManifest.xml` — ✅ **Done** (RECORD_AUDIO permission)
+- `iosApp/iosApp/Info.plist` — ✅ **Done** (NSMicrophoneUsageDescription)
 
 ## Implementation Order
 
@@ -180,10 +228,20 @@ Update `composeApp/src/commonMain/kotlin/sanctuary/app/App.kt`:
 
 ## Verification
 
-1. **Build**: `./gradlew :feature_dump:build` — verify compilation across all source sets
-2. **Android run**: `./gradlew :composeApp:installDebug` — test recording flow on emulator/device
-3. **Permission flow**: Verify microphone permission dialog appears on first record attempt
-4. **Recording lifecycle**: Start → timer ticks → Stop → recording appears in list
-5. **Cancel flow**: Start → Cancel → no recording saved, file deleted
-6. **Persistence**: Kill app → reopen → recordings still listed
-7. **iOS**: Build and test via Xcode (`open iosApp/iosApp.xcodeproj`)
+### Build & Compilation
+1. `./gradlew :feature_dump:build` — verify compilation across all source sets
+2. `./gradlew :composeApp:build` — full app build
+
+### Recording Functionality (Android)
+1. `./gradlew :composeApp:installDebug` — install on emulator/device
+2. **Permission flow**: Verify microphone permission dialog on first record attempt
+3. **Recording lifecycle**: Start → timer ticks (MM:SS card) → waveform animates → Stop
+4. **Cancel flow**: Start → Cancel → no recording saved, file deleted
+5. **Playback**: Tap recording → dialog opens → Play → sound plays → Stop works
+6. **History**: Navigate to RecordingHistoryScreen → see all recordings → delete works
+7. **Persistence**: Kill app → reopen → recordings still listed
+
+### Recording Functionality (iOS)
+1. `open iosApp/iosApp.xcodeproj` — build and run via Xcode
+2. Same tests as Android above
+3. Verify audio session management (microphone setup, background behavior if needed)
