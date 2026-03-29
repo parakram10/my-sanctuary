@@ -35,6 +35,7 @@ kotlin {
             kotlin.srcDir("src/domainMain/kotlin")
             dependencies {
                 api(project(":shared"))
+                api(libs.kotlinx.coroutines.core)
             }
         }
 
@@ -47,7 +48,9 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.ui)
+                implementation(compose.components.resources)
                 implementation(libs.koin.compose)
+                implementation(libs.koin.compose.viewmodel)
                 implementation(libs.kotlinx.coroutines.core)
             }
         }
@@ -58,15 +61,25 @@ kotlin {
             dependencies {
                 implementation(project(":core_network"))
                 implementation(project(":core_database"))
+                implementation(libs.sqldelight.coroutines.extensions)
+                implementation(libs.kotlinx.coroutines.core)
             }
         }
 
         androidMain.get().dependsOn(presentationMain)
         androidMain.get().dependsOn(dataMain)
 
+        androidMain.dependencies {
+            implementation(libs.koin.android)
+            implementation(libs.sqldelight.android.driver)
+        }
+
         sourceSets.named("iosMain").configure {
             dependsOn(presentationMain)
             dependsOn(dataMain)
+            dependencies {
+                implementation(libs.sqldelight.native.driver)
+            }
         }
     }
 }
