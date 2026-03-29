@@ -7,6 +7,11 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+compose.resources {
+    publicResClass = true
+    generateResClass = always
+}
+
 kotlin {
     applyDefaultHierarchyTemplate()
 
