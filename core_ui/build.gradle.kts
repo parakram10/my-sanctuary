@@ -26,6 +26,8 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.components.resources)
             implementation(compose.ui)
+            api(libs.androidx.lifecycle.viewmodel)
+            api(libs.kotlinx.coroutines.core)
         }
         androidMain.dependencies {
             implementation(compose.preview)

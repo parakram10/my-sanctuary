@@ -15,7 +15,7 @@ import platform.AVFAudio.AVSampleRateKey
 import platform.AVFAudio.setActive
 import platform.CoreAudioTypes.kAudioFormatMPEG4AAC
 import platform.Foundation.NSURL
-import sanctuary.app.feature.dump.data.audio.AudioRecorder
+import sanctuary.app.feature.dump.domain.audio.AudioRecorder
 
 internal class IosAudioRecorder : AudioRecorder {
 

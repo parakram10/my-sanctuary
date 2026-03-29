@@ -1,7 +1,7 @@
 package sanctuary.app.feature.dump.platform
 
 import android.content.Context
-import sanctuary.app.feature.dump.data.audio.AudioFileProvider
+import sanctuary.app.feature.dump.domain.audio.AudioFileProvider
 import java.io.File
 
 internal class AndroidAudioFileProvider(private val context: Context) : AudioFileProvider {

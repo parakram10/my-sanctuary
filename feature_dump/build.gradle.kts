@@ -35,6 +35,7 @@ kotlin {
             kotlin.srcDir("src/domainMain/kotlin")
             dependencies {
                 api(project(":shared"))
+                api(libs.kotlinx.coroutines.core)
             }
         }
 

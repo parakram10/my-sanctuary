@@ -6,7 +6,7 @@ import android.os.Build
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import sanctuary.app.feature.dump.data.audio.AudioRecorder
+import sanctuary.app.feature.dump.domain.audio.AudioRecorder
 
 internal class AndroidAudioRecorder(private val context: Context) : AudioRecorder {
 

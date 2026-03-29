@@ -7,7 +7,7 @@ import platform.Foundation.NSFileManager
 import platform.Foundation.NSUserDomainMask
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
 import platform.Foundation.timeIntervalSince1970
-import sanctuary.app.feature.dump.data.audio.AudioFileProvider
+import sanctuary.app.feature.dump.domain.audio.AudioFileProvider
 
 internal class IosAudioFileProvider : AudioFileProvider {
 
