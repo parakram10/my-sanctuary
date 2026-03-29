@@ -6,8 +6,8 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import sanctuary.app.core.database.SanctuaryDatabase
 import sanctuary.app.feature.dump.data.di.dumpDataModule
-import sanctuary.app.feature.dump.data.preferences.PermissionsPreferences
 import sanctuary.app.feature.dump.domain.audio.AudioFileProvider
+import sanctuary.app.feature.dump.domain.preferences.PermissionsPreferences
 import sanctuary.app.feature.dump.domain.audio.AudioPlayer
 import sanctuary.app.feature.dump.domain.audio.AudioRecorder
 import sanctuary.app.feature.dump.domain.di.dumpDomainModule

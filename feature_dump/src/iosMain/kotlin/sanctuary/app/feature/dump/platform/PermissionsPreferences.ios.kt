@@ -1,10 +1,9 @@
-package sanctuary.app.feature.dump.data.preferences
+package sanctuary.app.feature.dump.domain.preferences
 
 import platform.Foundation.NSUserDefaults
-import platform.Foundation.standardUserDefaults
 
 actual class PermissionsPreferences {
-    private val userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults
+    private val userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
 
     actual fun isMicrophonePermissionGranted(): Boolean =
         userDefaults.boolForKey(KEY_MICROPHONE_PERMISSION)

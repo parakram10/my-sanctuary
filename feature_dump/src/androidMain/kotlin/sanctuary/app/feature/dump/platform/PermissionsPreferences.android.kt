@@ -1,4 +1,4 @@
-package sanctuary.app.feature.dump.data.preferences
+package sanctuary.app.feature.dump.domain.preferences
 
 import android.content.Context
 import android.content.SharedPreferences

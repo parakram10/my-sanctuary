@@ -1,4 +1,4 @@
-package sanctuary.app.feature.dump.data.preferences
+package sanctuary.app.feature.dump.domain.preferences
 
 expect class PermissionsPreferences {
     fun isMicrophonePermissionGranted(): Boolean

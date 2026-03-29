@@ -4,8 +4,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import sanctuary.app.feature.dump.data.preferences.PermissionsPreferences
 import sanctuary.app.feature.dump.domain.audio.AudioFileProvider
+import sanctuary.app.feature.dump.domain.preferences.PermissionsPreferences
 import sanctuary.app.feature.dump.domain.audio.AudioPlayer
 import sanctuary.app.feature.dump.domain.audio.AudioRecorder
 import sanctuary.app.feature.dump.domain.model.Recording
@@ -38,12 +38,11 @@ class DumpViewModel(
     private var playbackMonitorJob: Job? = null
 
     init {
+        syncPermissionState()
         loadRecordings()
     }
 
-    override fun initialDataState(): DumpDataState = DumpDataState(
-        permissionGranted = permissionsPreferences.isMicrophonePermissionGranted()
-    )
+    override fun initialDataState(): DumpDataState = DumpDataState()
 
     override suspend fun convertToUiState(dataState: DumpDataState): DumpViewState = DumpViewState(
         isRecording = dataState.recordingStatus == RecordingStatus.Recording,
@@ -81,6 +80,14 @@ class DumpViewModel(
                     is UsecaseResult.Failure -> emitSideEffect(DumpSideEffect.ShowError("Failed to load recordings"))
                 }
             }
+        }
+    }
+
+    private fun syncPermissionState() {
+        updateState {
+            it.copy(
+                permissionGranted = permissionsPreferences.isMicrophonePermissionGranted()
+            )
         }
     }
 
