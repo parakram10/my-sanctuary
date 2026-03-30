@@ -31,7 +31,8 @@ fun dumpFeaturePlatformModule() = module {
         )
     }
     single { SanctuaryDatabase(get()) }
-    single<AudioRecorder> { AndroidAudioRecorder(androidContext()) }
+    single { AndroidAudioRecorder(androidContext()) }
+    single<AudioRecorder> { get<AndroidAudioRecorder>() }
     single<AudioPlayer> { AndroidAudioPlayer() }
     single<AudioFileProvider> { AndroidAudioFileProvider(androidContext()) }
     single { PermissionsPreferences(androidContext()) }
