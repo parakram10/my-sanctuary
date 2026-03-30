@@ -14,6 +14,8 @@ import sanctuary.app.feature.dump.domain.di.dumpDomainModule
 import sanctuary.app.feature.dump.platform.AndroidAudioFileProvider
 import sanctuary.app.feature.dump.platform.AndroidAudioPlayer
 import sanctuary.app.feature.dump.platform.AndroidAudioRecorder
+import sanctuary.app.feature.dump.platform.AndroidMediaRecordingManager
+import sanctuary.app.feature.dump.platform.AndroidSpeechRecognitionManager
 import sanctuary.app.feature.dump.presentation.di.dumpPresentationModule
 
 fun dumpFeaturePlatformModule() = module {
@@ -31,7 +33,9 @@ fun dumpFeaturePlatformModule() = module {
         )
     }
     single { SanctuaryDatabase(get()) }
-    single { AndroidAudioRecorder(androidContext()) }
+    single { AndroidMediaRecordingManager(androidContext()) }
+    single { AndroidSpeechRecognitionManager(androidContext()) }
+    single { AndroidAudioRecorder(get(), get()) }
     single<AudioRecorder> { get<AndroidAudioRecorder>() }
     single<AudioPlayer> { AndroidAudioPlayer() }
     single<AudioFileProvider> { AndroidAudioFileProvider(androidContext()) }
