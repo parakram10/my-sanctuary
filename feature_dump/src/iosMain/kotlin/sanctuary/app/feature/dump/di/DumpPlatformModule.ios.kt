@@ -13,6 +13,9 @@ import sanctuary.app.feature.dump.domain.preferences.PermissionsPreferences
 import sanctuary.app.feature.dump.platform.IosAudioFileProvider
 import sanctuary.app.feature.dump.platform.IosAudioPlayer
 import sanctuary.app.feature.dump.platform.IosAudioRecorder
+import sanctuary.app.feature.dump.platform.IosAudioSessionManager
+import sanctuary.app.feature.dump.platform.IosMediaRecordingManager
+import sanctuary.app.feature.dump.platform.IosSpeechRecognitionManager
 import sanctuary.app.feature.dump.presentation.di.dumpPresentationModule
 
 fun dumpFeaturePlatformModule() = module {
@@ -24,7 +27,10 @@ fun dumpFeaturePlatformModule() = module {
 
     single<SqlDriver> { NativeSqliteDriver(SanctuaryDatabase.Schema, "sanctuary.db") }
     single { SanctuaryDatabase(get()) }
-    single<AudioRecorder> { IosAudioRecorder() }
+    single { IosAudioSessionManager() }
+    single { IosMediaRecordingManager(get()) }
+    single { IosSpeechRecognitionManager() }
+    single<AudioRecorder> { IosAudioRecorder(get(), get()) }
     single<AudioPlayer> { IosAudioPlayer() }
     single<AudioFileProvider> { IosAudioFileProvider() }
     single { PermissionsPreferences() }
