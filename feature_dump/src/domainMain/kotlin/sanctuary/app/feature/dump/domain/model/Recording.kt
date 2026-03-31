@@ -7,4 +7,5 @@ data class Recording(
     val durationMs: Long,
     val createdAt: Long,
     val title: String?,
+    val transcription: String?,
 )

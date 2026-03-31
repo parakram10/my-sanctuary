@@ -4,7 +4,8 @@ CREATE TABLE recordings (
     file_path TEXT NOT NULL,
     duration_ms INTEGER NOT NULL,
     created_at INTEGER NOT NULL,
-    title TEXT
+    title TEXT,
+    transcription TEXT
 );
 
 selectAll:
@@ -17,8 +18,8 @@ selectById:
 SELECT * FROM recordings WHERE id = ?;
 
 insert:
-INSERT INTO recordings (id, user_id, file_path, duration_ms, created_at, title)
-VALUES (?, ?, ?, ?, ?, ?);
+INSERT INTO recordings (id, user_id, file_path, duration_ms, created_at, title, transcription)
+VALUES (?, ?, ?, ?, ?, ?, ?);
 
 deleteById:
 DELETE FROM recordings WHERE id = ?;
