@@ -1,0 +1,19 @@
+CREATE TABLE rate_limits (
+    id TEXT NOT NULL PRIMARY KEY,
+    date INTEGER NOT NULL,
+    api_calls_used INTEGER DEFAULT 0,
+    max_api_calls INTEGER DEFAULT 4
+);
+
+getByDate:
+SELECT * FROM rate_limits WHERE date = ?;
+
+insert:
+INSERT INTO rate_limits (id, date, api_calls_used, max_api_calls)
+VALUES (?, ?, ?, ?);
+
+updateCallsUsed:
+UPDATE rate_limits SET api_calls_used = ? WHERE date = ?;
+
+deleteByDate:
+DELETE FROM rate_limits WHERE date = ?;

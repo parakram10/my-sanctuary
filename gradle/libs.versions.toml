@@ -10,6 +10,7 @@ ktor = "3.1.3"
 sqldelight = "2.1.0"
 serialization = "1.8.1"
 koin = "4.1.0"
+security = "1.1.0-alpha06"
 junit = "4.13.2"
 mockk = "1.13.12"
 turbine = "1.1.0"
@@ -19,6 +20,7 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "security" }
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }

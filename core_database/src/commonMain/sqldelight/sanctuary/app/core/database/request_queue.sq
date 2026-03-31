@@ -1,0 +1,26 @@
+CREATE TABLE request_queue (
+    id TEXT NOT NULL PRIMARY KEY,
+    recording_id TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    retry_count INTEGER DEFAULT 0,
+    max_retries INTEGER DEFAULT 3,
+    status TEXT NOT NULL,
+    error_message TEXT,
+    FOREIGN KEY (recording_id) REFERENCES recordings(id) ON DELETE CASCADE
+);
+
+selectPending:
+SELECT * FROM request_queue WHERE status = 'PENDING' ORDER BY created_at ASC;
+
+selectAll:
+SELECT * FROM request_queue ORDER BY created_at DESC;
+
+insert:
+INSERT INTO request_queue (id, recording_id, created_at, status)
+VALUES (?, ?, ?, ?);
+
+updateStatus:
+UPDATE request_queue SET status = ?, error_message = ?, retry_count = ? WHERE id = ?;
+
+deleteById:
+DELETE FROM request_queue WHERE id = ?;
