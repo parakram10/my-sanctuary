@@ -10,6 +10,7 @@ internal fun Recordings.toDomain(): Recording = Recording(
     durationMs = duration_ms,
     createdAt = created_at,
     title = title,
+    transcription = transcription,
 )
 
 internal fun Recording.toEntity(): Recordings = Recordings(
@@ -19,4 +20,5 @@ internal fun Recording.toEntity(): Recordings = Recordings(
     duration_ms = durationMs,
     created_at = createdAt,
     title = title,
+    transcription = transcription,
 )

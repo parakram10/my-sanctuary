@@ -9,6 +9,7 @@ import sanctuary.app.feature.dump.domain.preferences.PermissionsPreferences
 import sanctuary.app.feature.dump.domain.audio.AudioPlayer
 import sanctuary.app.feature.dump.domain.audio.AudioRecorder
 import sanctuary.app.feature.dump.domain.model.Recording
+import sanctuary.app.feature.dump.domain.repository.TranscriptionRepository
 import sanctuary.app.feature.dump.domain.usecase.DeleteRecordingUseCase
 import sanctuary.app.feature.dump.domain.usecase.GetRecordingsUseCase
 import sanctuary.app.feature.dump.domain.usecase.SaveRecordingUseCase
@@ -31,6 +32,7 @@ class DumpViewModel(
     private val audioPlayer: AudioPlayer,
     private val audioFileProvider: AudioFileProvider,
     private val permissionsPreferences: PermissionsPreferences,
+    private val transcriptionRepository: TranscriptionRepository,
 ) : BaseStateMviViewModel<DumpViewIntent, DumpDataState, DumpViewState, DumpSideEffect>() {
 
     private var timerJob: Job? = null
@@ -121,6 +123,10 @@ class DumpViewModel(
         updateState { it.copy(recordingStatus = RecordingStatus.Saving) }
 
         viewModelScope.launch {
+            val transcription = when (val t = transcriptionRepository.transcribe(filePath)) {
+                is UsecaseResult.Success -> t.data
+                is UsecaseResult.Failure -> null
+            }
             val recording = Recording(
                 id = generateId(),
                 userId = null,
@@ -128,6 +134,7 @@ class DumpViewModel(
                 durationMs = durationMs,
                 createdAt = currentEpochMs(),
                 title = null,
+                transcription = transcription,
             )
             when (val result = saveRecordingUseCase(recording)) {
                 is UsecaseResult.Success -> Unit
@@ -254,6 +261,7 @@ class DumpViewModel(
         title = title ?: "Voice Note",
         duration = durationMs.toTimerText(),
         date = TimeUtils.formatEpochMs(createdAt),
+        transcription = transcription,
     )
 
     private fun currentEpochMs(): Long = TimeUtils.currentEpochMs()

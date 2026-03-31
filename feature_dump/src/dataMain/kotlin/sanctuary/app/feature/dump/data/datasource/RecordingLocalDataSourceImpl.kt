@@ -46,6 +46,7 @@ internal class RecordingLocalDataSourceImpl(
             duration_ms = entity.duration_ms,
             created_at = entity.created_at,
             title = entity.title,
+            transcription = entity.transcription,
         )
     }
 
