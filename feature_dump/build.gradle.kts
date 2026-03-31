@@ -81,6 +81,22 @@ kotlin {
                 implementation(libs.sqldelight.native.driver)
             }
         }
+
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.kotlinx.coroutines.test)
+                implementation(libs.koin.test)
+                implementation(libs.turbine)
+            }
+        }
+
+        val androidUnitTest by getting {
+            dependencies {
+                implementation(libs.junit)
+                implementation(libs.mockk)
+            }
+        }
     }
 }
 
