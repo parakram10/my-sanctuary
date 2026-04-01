@@ -4,6 +4,8 @@
 
 # Local configuration
 local.properties
+.env
+.env.local
 
 # Android / packaging
 *.apk
