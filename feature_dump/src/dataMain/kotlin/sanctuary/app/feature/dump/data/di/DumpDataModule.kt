@@ -13,6 +13,7 @@ val dumpDataModule = module {
     singleOf(::RecordingLocalDataSourceImpl) bind RecordingLocalDataSource::class
     singleOf(::RecordingRepositoryImpl) bind RecordingRepository::class
     includes(providePlatformTranscriptionModule())
+    includes(insightModule)
 }
 
 /**
