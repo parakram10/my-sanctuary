@@ -6,12 +6,17 @@ import platform.Foundation.NSProcessInfo
 /**
  * iOS implementation of getGroqApiKey().
  * Retrieves the Groq API key from:
- * 1. Environment variable (for development)
+ * 1. Environment variable (for development - RECOMMENDED)
  * 2. Info.plist configuration (for production builds)
  *
- * To set up the API key on iOS:
- * 1. Set GROQ_API_KEY environment variable in Xcode scheme settings
- * 2. Or add GROQ_API_KEY key to Info.plist
+ * For Development (Fastest):
+ * 1. Open iosApp in Xcode
+ * 2. Product → Scheme → Edit Scheme
+ * 3. Run → Pre-actions
+ * 4. Add environment variable: GROQ_API_KEY = your-key
+ *
+ * For Production:
+ * 1. Add GROQ_API_KEY key to Info.plist with your API key value
  *
  * Get free API key from: https://console.groq.com/keys
  *

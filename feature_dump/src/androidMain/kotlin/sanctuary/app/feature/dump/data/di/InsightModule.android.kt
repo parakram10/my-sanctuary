@@ -18,9 +18,21 @@ internal actual fun getGroqApiKey(): String {
     // First try environment variable (for development)
     System.getenv("GROQ_API_KEY")?.let { return it }
 
-    // Then try BuildConfig (commented out until API key is added to build config)
-    // Uncomment this line once API key is added to build.gradle.kts:
-    // return BuildConfig.GROQ_API_KEY
+    // Then try BuildConfig (requires setup in build.gradle.kts)
+    // Add this to composeApp/build.gradle.kts:
+    // buildTypes {
+    //     debug {
+    //         buildConfigField("String", "GROQ_API_KEY", "\"your-key-here\"")
+    //     }
+    // }
+    // Then uncomment below and rebuild:
+    // try {
+    //     val clazz = Class.forName("sanctuary.app.BuildConfig")
+    //     val field = clazz.getField("GROQ_API_KEY")
+    //     return field.get(null) as String
+    // } catch (e: Exception) {
+    //     // Fall through to error
+    // }
 
     throw IllegalStateException(
         "Groq API key not configured. " +
