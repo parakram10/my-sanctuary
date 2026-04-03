@@ -71,6 +71,7 @@ android {
             )
         }
         debug {
+            buildConfigField("String", "GROQ_API_KEY", "\"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\"")
             // API keys provided via environment variables (see InsightModule.android.kt)
         }
     }
@@ -80,6 +81,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
