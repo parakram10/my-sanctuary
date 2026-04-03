@@ -6,8 +6,16 @@ CREATE TABLE recordings (
     created_at INTEGER NOT NULL,
     title TEXT,
     transcription TEXT,
-    is_archived INTEGER DEFAULT 0
+    is_archived INTEGER DEFAULT 0,
+    processing_status TEXT NOT NULL DEFAULT 'PENDING',
+    error_code TEXT,
+    background_wm_attempts INTEGER NOT NULL DEFAULT 0,
+    recording_locale TEXT NOT NULL DEFAULT 'en'
 );
+
+-- Index for v2 pipeline queries
+CREATE INDEX IF NOT EXISTS idx_processing_status ON recordings(processing_status);
+CREATE INDEX IF NOT EXISTS idx_background_wm_attempts ON recordings(background_wm_attempts);
 
 selectAll:
 SELECT * FROM recordings ORDER BY created_at DESC;
@@ -19,8 +27,30 @@ selectById:
 SELECT * FROM recordings WHERE id = ?;
 
 insert:
-INSERT INTO recordings (id, user_id, file_path, duration_ms, created_at, title, transcription)
-VALUES (?, ?, ?, ?, ?, ?, ?);
+INSERT INTO recordings (id, user_id, file_path, duration_ms, created_at, title, transcription, processing_status, recording_locale)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 deleteById:
 DELETE FROM recordings WHERE id = ?;
+
+-- v2 Pipeline queries
+
+selectByProcessingStatus:
+SELECT * FROM recordings WHERE processing_status = ? ORDER BY created_at ASC;
+
+updateProcessingStatus:
+UPDATE recordings SET processing_status = ?, error_code = ? WHERE id = ?;
+
+updateTranscription:
+UPDATE recordings SET transcription = ? WHERE id = ?;
+
+incrementBackgroundWmAttempts:
+UPDATE recordings SET background_wm_attempts = background_wm_attempts + 1 WHERE id = ?;
+
+-- Query for eligible background processing (PENDING or FAILED with transient errors, not yet attempted via WM)
+queryEligibleForBackgroundRetry:
+SELECT * FROM recordings
+WHERE (processing_status = 'PENDING' OR processing_status = 'FAILED')
+  AND background_wm_attempts < 1
+  AND (processing_status = 'PENDING' OR error_code IN ('NETWORK', 'TIMEOUT', 'UNKNOWN_TRANSIENT'))
+ORDER BY created_at ASC;

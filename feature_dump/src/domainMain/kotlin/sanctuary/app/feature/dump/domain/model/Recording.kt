@@ -9,4 +9,8 @@ data class Recording(
     val title: String?,
     val transcription: String?,
     val isArchived: Boolean = false,
+    val processingStatus: ProcessingStatus = ProcessingStatus.PENDING,
+    val errorCode: ProcessingErrorCode? = null,
+    val backgroundWmAttempts: Int = 0,
+    val recordingLocale: String = "en",
 )
