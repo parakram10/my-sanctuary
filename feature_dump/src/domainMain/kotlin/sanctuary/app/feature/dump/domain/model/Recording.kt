@@ -8,4 +8,5 @@ data class Recording(
     val createdAt: Long,
     val title: String?,
     val transcription: String?,
+    val isArchived: Boolean = false,
 )

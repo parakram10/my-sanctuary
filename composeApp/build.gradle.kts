@@ -70,6 +70,9 @@ android {
                 "proguard-rules.pro",
             )
         }
+        debug {
+            // API keys provided via environment variables (see InsightModule.android.kt)
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

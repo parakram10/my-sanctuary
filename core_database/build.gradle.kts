@@ -26,6 +26,8 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.sqldelight.android.driver)
+            implementation(libs.androidx.security.crypto)
+            implementation("net.zetetic:android-database-sqlcipher:4.5.4")
         }
         iosMain.dependencies {
             implementation(libs.sqldelight.native.driver)

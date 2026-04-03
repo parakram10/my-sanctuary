@@ -1,9 +1,9 @@
 package sanctuary.app.feature.dump.di
 
-import app.cash.sqldelight.driver.native.NativeSqliteDriver
-import app.cash.sqldelight.db.SqlDriver
 import org.koin.dsl.module
 import sanctuary.app.core.database.SanctuaryDatabase
+import sanctuary.app.core.database.db.createEncryptedDatabase
+import sanctuary.app.core.database.security.PassphraseManager
 import sanctuary.app.feature.dump.data.di.dumpDataModule
 import sanctuary.app.feature.dump.domain.audio.AudioFileProvider
 import sanctuary.app.feature.dump.domain.audio.AudioPlayer
@@ -25,8 +25,11 @@ fun dumpFeaturePlatformModule() = module {
         dumpPresentationModule,
     )
 
-    single<SqlDriver> { NativeSqliteDriver(SanctuaryDatabase.Schema, "sanctuary.db") }
-    single { SanctuaryDatabase(get()) }
+    single<SanctuaryDatabase> {
+        // Create encrypted database with secure passphrase
+        val passphrase = PassphraseManager.getOrCreatePassphrase()
+        createEncryptedDatabase(passphrase)
+    }
     single { IosAudioSessionManager() }
     single { IosMediaRecordingManager(get()) }
     single { IosSpeechRecognitionManager() }

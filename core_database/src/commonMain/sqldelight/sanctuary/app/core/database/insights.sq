@@ -1,0 +1,44 @@
+CREATE TABLE insights (
+    id TEXT NOT NULL PRIMARY KEY,
+    recording_id TEXT NOT NULL,
+    title TEXT NOT NULL,
+    summary TEXT NOT NULL,
+    full_summary TEXT NOT NULL,
+    emotions_json TEXT NOT NULL,
+    path_forward TEXT NOT NULL,
+    recording_type TEXT NOT NULL,
+    sentiment TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    is_archived INTEGER DEFAULT 0,
+    archived_at INTEGER,
+    status TEXT NOT NULL,
+    FOREIGN KEY (recording_id) REFERENCES recordings(id) ON DELETE CASCADE
+);
+
+selectAll:
+SELECT * FROM insights WHERE is_archived = 0 ORDER BY created_at DESC;
+
+selectById:
+SELECT * FROM insights WHERE id = ?;
+
+selectByRecordingId:
+SELECT * FROM insights WHERE recording_id = ?;
+
+selectArchived:
+SELECT * FROM insights WHERE is_archived = 1 ORDER BY archived_at DESC;
+
+insert:
+INSERT INTO insights (id, recording_id, title, summary, full_summary, emotions_json, path_forward, recording_type, sentiment, created_at, is_archived, status)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updateStatus:
+UPDATE insights SET status = ? WHERE id = ?;
+
+updateIsArchived:
+UPDATE insights SET is_archived = ?, archived_at = ? WHERE id = ?;
+
+deleteById:
+DELETE FROM insights WHERE id = ?;
+
+deleteOlderThan:
+DELETE FROM insights WHERE is_archived = 0 AND created_at < ?;

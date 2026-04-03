@@ -11,6 +11,7 @@ internal fun Recordings.toDomain(): Recording = Recording(
     createdAt = created_at,
     title = title,
     transcription = transcription,
+    isArchived = is_archived != 0L,
 )
 
 internal fun Recording.toEntity(): Recordings = Recordings(
@@ -21,4 +22,5 @@ internal fun Recording.toEntity(): Recordings = Recordings(
     created_at = createdAt,
     title = title,
     transcription = transcription,
+    is_archived = if (isArchived) 1L else 0L,
 )

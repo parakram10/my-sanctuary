@@ -5,7 +5,8 @@ CREATE TABLE recordings (
     duration_ms INTEGER NOT NULL,
     created_at INTEGER NOT NULL,
     title TEXT,
-    transcription TEXT
+    transcription TEXT,
+    is_archived INTEGER DEFAULT 0
 );
 
 selectAll:
