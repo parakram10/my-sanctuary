@@ -1,0 +1,211 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "_deps/whispercpp-build",
+					"childIndexes" : 
+					[
+						2,
+						5
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.whispercpp-build-Debug-97716f7f5e6878051fcd.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src"
+				},
+				{
+					"build" : "_deps/whispercpp-build/ggml",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.whispercpp-build.ggml-Debug-8fe3ed4f08e2940ec9db.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/ggml"
+				},
+				{
+					"build" : "_deps/whispercpp-build/ggml/src",
+					"childIndexes" : 
+					[
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.whispercpp-build.ggml.src-Debug-73f1739205ba92ac9fcd.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 2,
+					"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/ggml/src",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"build" : "_deps/whispercpp-build/ggml/src/ggml-cpu",
+					"jsonFile" : "directory-_deps.whispercpp-build.ggml.src.ggml-cpu-Debug-f2201ec81f269829e380.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 2,
+					"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/ggml/src/ggml-cpu"
+				},
+				{
+					"build" : "_deps/whispercpp-build/src",
+					"jsonFile" : "directory-_deps.whispercpp-build.src-Debug-1a95d3fe5330b34d3a8f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/src",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "sanctuary_whisper",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1,
+						5
+					],
+					"name" : "whisper.cpp",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2,
+						3,
+						4
+					],
+					"name" : "ggml",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 3,
+					"id" : "ggml::@8dc812d35f23b3704781",
+					"jsonFile" : "target-ggml-Debug-05128cbfd152240f875f.json",
+					"name" : "ggml",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ggml-base::@8dc812d35f23b3704781",
+					"jsonFile" : "target-ggml-base-Debug-31fbd875826a6cebd053.json",
+					"name" : "ggml-base",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ggml-cpu::@8dc812d35f23b3704781",
+					"jsonFile" : "target-ggml-cpu-Debug-0eb3e2f72e11c669462d.json",
+					"name" : "ggml-cpu",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sanctuary_whisper::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sanctuary_whisper-Debug-bf3770790bea4b3be452.json",
+					"name" : "sanctuary_whisper",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "whisper::@1c8dd6753170a826aa63",
+					"jsonFile" : "target-whisper-Debug-ac549bc5b16ab9e5add6.json",
+					"name" : "whisper",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86",
+		"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/src/androidMain/jni"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

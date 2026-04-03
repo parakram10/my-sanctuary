@@ -1,0 +1,201 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "_deps/whispercpp-build/src/libwhisper.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"install",
+			"target_link_libraries",
+			"target_include_directories",
+			"target_compile_features"
+		],
+		"files" : 
+		[
+			"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/src/CMakeLists.txt",
+			"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 106,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 182,
+				"parent" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 130,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 118,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 119,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC"
+				},
+				{
+					"backtrace" : 4,
+					"fragment" : "-pthread"
+				},
+				{
+					"fragment" : "-std=gnu++17"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 4,
+					"define" : "GGML_USE_CPU"
+				},
+				{
+					"backtrace" : 0,
+					"define" : "WHISPER_VERSION=\"1.8.4\""
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 5,
+					"path" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/src/."
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/src/../include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/ggml/src/../include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					6
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				2
+			],
+			"sysroot" : 
+			{
+				"path" : "/Users/parakramsingh/Library/Android/sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/darwin-x86_64/sysroot"
+			}
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 4,
+			"id" : "ggml-base::@8dc812d35f23b3704781"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "ggml::@8dc812d35f23b3704781"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "ggml-cpu::@8dc812d35f23b3704781"
+		}
+	],
+	"id" : "whisper::@1c8dd6753170a826aa63",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 3,
+				"path" : "lib"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "/usr/local"
+		}
+	},
+	"name" : "whisper",
+	"nameOnDisk" : "libwhisper.a",
+	"paths" : 
+	{
+		"build" : "_deps/whispercpp-build/src",
+		"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/include/whisper.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/src/whisper-arch.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86/_deps/whispercpp-src/src/whisper.cpp",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}
