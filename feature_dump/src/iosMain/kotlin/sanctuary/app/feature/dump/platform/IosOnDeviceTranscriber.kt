@@ -23,9 +23,9 @@ import kotlin.coroutines.resumeWithException
 class IosOnDeviceTranscriber : OnDeviceTranscriber {
 
     companion object {
-        // Max transcription time: 5 minutes (300 seconds)
-        // SFSpeechRecognizer has internal timeouts, this is a safety net
-        private const val TRANSCRIPTION_TIMEOUT_MS = 300_000L
+        // Max transcription time: 60 seconds
+        // Most voice recordings are < 60 seconds; SFSpeechRecognizer has built-in timeouts as safety net
+        private const val TRANSCRIPTION_TIMEOUT_MS = 60_000L
 
         // Supported audio formats on iOS
         private val SUPPORTED_FORMATS = setOf(".m4a", ".mp3", ".wav", ".aac", ".caf")
