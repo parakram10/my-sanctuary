@@ -25,15 +25,11 @@ fun dumpFeaturePlatformModule() = module {
         dumpPresentationModule,
     )
 
-    // Initialize Android context for database encryption
-    single {
+    single<SanctuaryDatabase> {
         val context = androidContext()
         setAndroidContext(context)
         PassphraseManager.init(context)
-        context
-    }
 
-    single<SanctuaryDatabase> {
         // Create encrypted database with secure passphrase
         val passphrase = PassphraseManager.getOrCreatePassphrase()
         createEncryptedDatabase(passphrase)
