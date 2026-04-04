@@ -1,18 +1,17 @@
 package sanctuary.app.feature.dump.data.repository
 
+import sanctuary.app.feature.dump.data.datasource.InsightLocalDataSource
+import sanctuary.app.feature.dump.domain.model.Insight
+import sanctuary.app.feature.dump.domain.model.InsightGenerationRequest
+import sanctuary.app.feature.dump.domain.model.InsightGenerationResult
+import sanctuary.app.feature.dump.domain.model.RateLimit
+import sanctuary.app.feature.dump.domain.model.RequestStatus
+import sanctuary.app.feature.dump.domain.port.InsightPort
+import sanctuary.app.feature.dump.domain.repository.InsightRepository
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
-import sanctuary.app.feature.dump.data.datasource.InsightLocalDataSource
-import sanctuary.app.feature.dump.domain.model.Insight
-import sanctuary.app.feature.dump.domain.model.InsightGenerationResult
-import sanctuary.app.feature.dump.domain.model.InsightGenerationRequest
-import sanctuary.app.feature.dump.domain.model.InsightStatus
-import sanctuary.app.feature.dump.domain.model.RateLimit
-import sanctuary.app.feature.dump.domain.model.RequestStatus
-import sanctuary.app.feature.dump.domain.repository.InsightRepository
-import sanctuary.app.feature.dump.domain.service.InsightGenerationService
 
 /**
  * Implementation of [InsightRepository] that orchestrates insight generation,
@@ -33,7 +32,7 @@ import sanctuary.app.feature.dump.domain.service.InsightGenerationService
  */
 internal class InsightRepositoryImpl(
     private val localDataSource: InsightLocalDataSource,
-    private val generationService: InsightGenerationService,
+    private val generationService: InsightPort,
 ) : InsightRepository {
 
     /**
