@@ -1,7 +1,6 @@
 package sanctuary.app.feature.dump.data.di
 
 import io.ktor.client.HttpClient
-import io.ktor.client.plugins.HttpTimeout
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.bind
@@ -11,8 +10,8 @@ import sanctuary.app.feature.dump.data.datasource.InsightLocalDataSourceImpl
 import sanctuary.app.feature.dump.data.repository.InsightRepositoryImpl
 import sanctuary.app.feature.dump.data.service.ClaudeInsightGenerationService
 import sanctuary.app.feature.dump.data.service.GroqInsightGenerationService
+import sanctuary.app.feature.dump.domain.port.InsightPort
 import sanctuary.app.feature.dump.domain.repository.InsightRepository
-import sanctuary.app.feature.dump.domain.service.InsightGenerationService
 
 /**
  * Koin DI module for Insight feature services.
@@ -62,9 +61,9 @@ val insightModule = module {
     // Database access layer
     singleOf(::InsightLocalDataSourceImpl) bind InsightLocalDataSource::class
 
-    // AI service for generating insights (provider-dependent)
+    // InsightPort implementation for generating insights (provider-dependent)
     // Change AI_PROVIDER to switch between "groq" and "claude"
-    single<InsightGenerationService> {
+    single<InsightPort> {
         when (AI_PROVIDER.lowercase()) {
             "groq" -> GroqInsightGenerationService(
                 httpClient = get(),
