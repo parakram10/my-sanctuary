@@ -6,12 +6,24 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 import sanctuary.app.feature.dump.data.datasource.RecordingLocalDataSource
 import sanctuary.app.feature.dump.data.datasource.RecordingLocalDataSourceImpl
+import sanctuary.app.feature.dump.data.processing.RecordingProcessingEngine
+import sanctuary.app.feature.dump.data.processing.RecordingProcessingEngineImpl
 import sanctuary.app.feature.dump.data.repository.RecordingRepositoryImpl
 import sanctuary.app.feature.dump.domain.repository.RecordingRepository
 
 val dumpDataModule = module {
     singleOf(::RecordingLocalDataSourceImpl) bind RecordingLocalDataSource::class
     singleOf(::RecordingRepositoryImpl) bind RecordingRepository::class
+
+    // Wire RecordingProcessingEngine for v2 pipeline orchestration
+    single<RecordingProcessingEngine> {
+        RecordingProcessingEngineImpl(
+            recordingRepository = get(),
+            insightPort = get(),              // From insightModule
+            transcriber = get()               // From platform module
+        )
+    }
+
     includes(providePlatformTranscriptionModule())
     includes(insightModule)
 }
