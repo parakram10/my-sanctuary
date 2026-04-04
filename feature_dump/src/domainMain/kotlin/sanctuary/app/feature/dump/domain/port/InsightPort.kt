@@ -11,7 +11,7 @@ import sanctuary.app.feature.dump.domain.model.Insight
  * concrete provider.
  *
  * Throws on failure; the caller is responsible for checking retryability
- * against [ProcessingErrorCode].
+ * against [sanctuary.app.feature.dump.domain.model.ProcessingErrorCode].
  */
 interface InsightPort {
     suspend fun generateInsight(recordingId: String, transcription: String): Insight
