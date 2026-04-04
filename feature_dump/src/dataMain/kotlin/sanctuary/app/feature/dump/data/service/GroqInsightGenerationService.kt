@@ -8,22 +8,21 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
-import kotlinx.serialization.encodeToString
-import kotlin.uuid.Uuid
-import kotlin.uuid.ExperimentalUuidApi
-import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
 import sanctuary.app.feature.dump.domain.model.Insight
 import sanctuary.app.feature.dump.domain.model.InsightContent
 import sanctuary.app.feature.dump.domain.model.InsightStatus
 import sanctuary.app.feature.dump.domain.model.Sentiment
-import sanctuary.app.feature.dump.domain.service.InsightGenerationService
+import sanctuary.app.feature.dump.domain.port.InsightPort
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
- * Implementation of [InsightGenerationService] that integrates with Groq API.
+ * Implementation of [InsightPort] that integrates with Groq API.
  *
  * Groq provides fast, free AI inference via an OpenAI-compatible API.
  * This service calls Groq API to generate AI-powered emotional insights from
@@ -48,7 +47,7 @@ import sanctuary.app.feature.dump.domain.service.InsightGenerationService
 internal class GroqInsightGenerationService(
     private val httpClient: HttpClient,
     private val apiKey: String,
-) : InsightGenerationService {
+) : InsightPort {
 
     companion object {
         // Groq API endpoint (OpenAI-compatible)
