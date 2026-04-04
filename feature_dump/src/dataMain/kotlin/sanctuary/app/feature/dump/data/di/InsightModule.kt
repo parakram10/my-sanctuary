@@ -61,7 +61,7 @@ val insightModule = module {
     // Database access layer
     singleOf(::InsightLocalDataSourceImpl) bind InsightLocalDataSource::class
 
-    // AI service for generating insights (provider-dependent)
+    // InsightPort implementation for generating insights (provider-dependent)
     // Change AI_PROVIDER to switch between "groq" and "claude"
     single<InsightPort> {
         when (AI_PROVIDER.lowercase()) {
