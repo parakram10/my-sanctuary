@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86_64/_deps/whispercpp-subbuild/CMakeFiles/whispercpp-populate"
+		},
+		{
+			"file" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86_64/_deps/whispercpp-subbuild/CMakeFiles/whispercpp-populate.rule"
+		},
+		{
+			"file" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86_64/_deps/whispercpp-subbuild/CMakeFiles/whispercpp-populate-complete.rule"
+		},
+		{
+			"file" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86_64/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-build.rule"
+		},
+		{
+			"file" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86_64/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-configure.rule"
+		},
+		{
+			"file" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86_64/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-download.rule"
+		},
+		{
+			"file" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86_64/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-install.rule"
+		},
+		{
+			"file" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86_64/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-mkdir.rule"
+		},
+		{
+			"file" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86_64/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-patch.rule"
+		},
+		{
+			"file" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86_64/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-test.rule"
+		},
+		{
+			"file" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86_64/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"whispercpp-populate"
+		],
+		"name" : "whispercpp-populate"
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "_deps/whispercpp-build/src",
+		"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/x86_64/_deps/whispercpp-src/src"
+	}
+}

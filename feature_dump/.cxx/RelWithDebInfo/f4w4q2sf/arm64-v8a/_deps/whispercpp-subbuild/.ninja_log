@@ -1,0 +1,21 @@
+# ninja log v5
+0	189	1775301796470787495	whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-mkdir	c28c177133cadbb2
+0	189	1775301796470787495	/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/arm64-v8a/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-mkdir	c28c177133cadbb2
+189	12095	1775301808377491120	whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-download	e3cafcba3c1d7d8b
+189	12095	1775301808377491120	/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/arm64-v8a/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-download	e3cafcba3c1d7d8b
+12095	12195	0	whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-update	c6bd780040ac494a
+12095	12195	0	/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/arm64-v8a/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-update	c6bd780040ac494a
+12195	12248	1775301808530456555	whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-patch	46c721a5cd45acf2
+12195	12248	1775301808530456555	/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/arm64-v8a/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-patch	46c721a5cd45acf2
+12248	12302	1775301808583853648	whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-configure	240e55056aaf378d
+12248	12302	1775301808583853648	/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/arm64-v8a/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-configure	240e55056aaf378d
+12302	12354	1775301808636559949	whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-build	91f7edf6b703e336
+12302	12354	1775301808636559949	/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/arm64-v8a/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-build	91f7edf6b703e336
+12354	12407	1775301808689129875	whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-install	66c6a5fd753ee8d9
+12354	12407	1775301808689129875	/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/arm64-v8a/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-install	66c6a5fd753ee8d9
+12407	12459	1775301808741801800	whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-test	2918177a195fbb36
+12407	12459	1775301808741801800	/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/arm64-v8a/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-test	2918177a195fbb36
+12459	12533	1775301808814836553	CMakeFiles/whispercpp-populate-complete	530555d9909c21bb
+12459	12533	1775301808814836553	whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-done	530555d9909c21bb
+12459	12533	1775301808814836553	/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/arm64-v8a/_deps/whispercpp-subbuild/CMakeFiles/whispercpp-populate-complete	530555d9909c21bb
+12459	12533	1775301808814836553	/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/arm64-v8a/_deps/whispercpp-subbuild/whispercpp-populate-prefix/src/whispercpp-populate-stamp/whispercpp-populate-done	530555d9909c21bb

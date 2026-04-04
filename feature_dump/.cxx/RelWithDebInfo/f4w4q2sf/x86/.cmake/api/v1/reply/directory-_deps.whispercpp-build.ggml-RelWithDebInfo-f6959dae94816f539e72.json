@@ -1,0 +1,107 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 339,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 340,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 408,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"_deps/whispercpp-build/ggml/src/libggml.a"
+			],
+			"targetId" : "ggml::@8dc812d35f23b3704781",
+			"targetIndex" : 0,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-cpu.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-alloc.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-backend.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-blas.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-cann.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-cpp.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-cuda.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-opt.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-metal.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-rpc.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-virtgpu.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-sycl.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-vulkan.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-webgpu.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-zendnn.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/ggml-openvino.h",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/include/gguf.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"_deps/whispercpp-build/ggml/src/libggml-base.a"
+			],
+			"targetId" : "ggml-base::@8dc812d35f23b3704781",
+			"targetIndex" : 1,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/ggml",
+			"paths" : 
+			[
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-build/ggml/ggml-config.cmake",
+				"/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-build/ggml/ggml-version.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "_deps/whispercpp-build/ggml",
+		"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml"
+	}
+}

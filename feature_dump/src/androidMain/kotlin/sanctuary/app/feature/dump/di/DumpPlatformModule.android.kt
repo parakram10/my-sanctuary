@@ -1,5 +1,8 @@
 package sanctuary.app.feature.dump.di
 
+import androidx.work.WorkManager
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import sanctuary.app.core.database.SanctuaryDatabase
@@ -12,10 +15,13 @@ import sanctuary.app.feature.dump.domain.preferences.PermissionsPreferences
 import sanctuary.app.feature.dump.domain.audio.AudioPlayer
 import sanctuary.app.feature.dump.domain.audio.AudioRecorder
 import sanctuary.app.feature.dump.domain.di.dumpDomainModule
+import sanctuary.app.feature.dump.domain.scheduling.BackgroundWorkScheduler
 import sanctuary.app.feature.dump.platform.AndroidAudioFileProvider
 import sanctuary.app.feature.dump.platform.AndroidAudioPlayer
 import sanctuary.app.feature.dump.platform.AndroidAudioRecorder
+import sanctuary.app.feature.dump.platform.AndroidBackgroundWorkScheduler
 import sanctuary.app.feature.dump.platform.AndroidMediaRecordingManager
+import sanctuary.app.feature.dump.platform.KoinWorkerFactory
 import sanctuary.app.feature.dump.presentation.di.dumpPresentationModule
 
 fun dumpFeaturePlatformModule() = module {
@@ -40,4 +46,24 @@ fun dumpFeaturePlatformModule() = module {
     single<AudioPlayer> { AndroidAudioPlayer() }
     single<AudioFileProvider> { AndroidAudioFileProvider(androidContext()) }
     single { PermissionsPreferences(androidContext()) }
+
+    // WorkManager integration for background recording processing
+    single<BackgroundWorkScheduler> {
+        AndroidBackgroundWorkScheduler(androidContext())
+    }
+
+    // Initialize WorkManager with Koin-aware worker factory
+    single {
+        val context = androidContext()
+        val configuration = androidx.work.Configuration.Builder()
+            .setWorkerFactory(KoinWorkerFactory())
+            .build()
+        WorkManager.initialize(context, configuration)
+
+        // Setup periodic background processing job
+        GlobalScope.launch {
+            val scheduler = get<BackgroundWorkScheduler>()
+            scheduler.setup()
+        }
+    }
 }
