@@ -15,7 +15,6 @@ import sanctuary.app.feature.dump.platform.IosAudioPlayer
 import sanctuary.app.feature.dump.platform.IosAudioRecorder
 import sanctuary.app.feature.dump.platform.IosAudioSessionManager
 import sanctuary.app.feature.dump.platform.IosMediaRecordingManager
-import sanctuary.app.feature.dump.platform.IosSpeechRecognitionManager
 import sanctuary.app.feature.dump.presentation.di.dumpPresentationModule
 
 fun dumpFeaturePlatformModule() = module {
@@ -32,8 +31,7 @@ fun dumpFeaturePlatformModule() = module {
     }
     single { IosAudioSessionManager() }
     single { IosMediaRecordingManager(get()) }
-    single { IosSpeechRecognitionManager() }
-    single<AudioRecorder> { IosAudioRecorder(get(), get()) }
+    single<AudioRecorder> { IosAudioRecorder(get()) }
     single<AudioPlayer> { IosAudioPlayer() }
     single<AudioFileProvider> { IosAudioFileProvider() }
     single { PermissionsPreferences() }

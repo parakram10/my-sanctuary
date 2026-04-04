@@ -16,7 +16,6 @@ import sanctuary.app.feature.dump.platform.AndroidAudioFileProvider
 import sanctuary.app.feature.dump.platform.AndroidAudioPlayer
 import sanctuary.app.feature.dump.platform.AndroidAudioRecorder
 import sanctuary.app.feature.dump.platform.AndroidMediaRecordingManager
-import sanctuary.app.feature.dump.platform.AndroidSpeechRecognitionManager
 import sanctuary.app.feature.dump.presentation.di.dumpPresentationModule
 
 fun dumpFeaturePlatformModule() = module {
@@ -26,22 +25,17 @@ fun dumpFeaturePlatformModule() = module {
         dumpPresentationModule,
     )
 
-    // Initialize Android context for database encryption
-    single {
+    single<SanctuaryDatabase> {
         val context = androidContext()
         setAndroidContext(context)
         PassphraseManager.init(context)
-        context
-    }
 
-    single<SanctuaryDatabase> {
         // Create encrypted database with secure passphrase
         val passphrase = PassphraseManager.getOrCreatePassphrase()
         createEncryptedDatabase(passphrase)
     }
     single { AndroidMediaRecordingManager(androidContext()) }
-    single { AndroidSpeechRecognitionManager(androidContext()) }
-    single { AndroidAudioRecorder(get(), get()) }
+    single { AndroidAudioRecorder(get()) }
     single<AudioRecorder> { get<AndroidAudioRecorder>() }
     single<AudioPlayer> { AndroidAudioPlayer() }
     single<AudioFileProvider> { AndroidAudioFileProvider(androidContext()) }

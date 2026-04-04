@@ -13,6 +13,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+val sanctuaryWhisperCppDir = providers.gradleProperty("SANCTUARY_WHISPER_CPP_DIR").orNull
+
 kotlin {
     applyDefaultHierarchyTemplate()
 
@@ -105,6 +107,14 @@ android {
     compileSdk = 35
     defaultConfig {
         minSdk = 26
+        externalNativeBuild {
+            cmake {
+                arguments += "-DANDROID_STL=c++_shared"
+                sanctuaryWhisperCppDir?.let {
+                    arguments += "-DSANCTUARY_WHISPER_CPP_DIR=$it"
+                }
+            }
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -112,5 +122,10 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+    externalNativeBuild {
+        cmake {
+            path = file("src/androidMain/jni/CMakeLists.txt")
+        }
     }
 }
