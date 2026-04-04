@@ -1,0 +1,71 @@
+{
+  "buildFiles": [
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/armeabi-v7a/_deps/whispercpp-src/CMakeLists.txt",
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/armeabi-v7a/_deps/whispercpp-src/ggml/CMakeLists.txt",
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/armeabi-v7a/_deps/whispercpp-src/ggml/src/CMakeLists.txt",
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/armeabi-v7a/_deps/whispercpp-src/ggml/src/ggml-cpu/CMakeLists.txt",
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/armeabi-v7a/_deps/whispercpp-src/src/CMakeLists.txt",
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/src/androidMain/jni/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/parakramsingh/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/parakramsingh/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "ggml::@8dc812d35f23b3704781": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "ggml",
+      "output": "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/armeabi-v7a/_deps/whispercpp-build/ggml/src/libggml.a"
+    },
+    "ggml-base::@8dc812d35f23b3704781": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "ggml-base",
+      "output": "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/armeabi-v7a/_deps/whispercpp-build/ggml/src/libggml-base.a"
+    },
+    "ggml-cpu::@8dc812d35f23b3704781": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "ggml-cpu",
+      "output": "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/armeabi-v7a/_deps/whispercpp-build/ggml/src/libggml-cpu.a"
+    },
+    "sanctuary_whisper::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "sanctuary_whisper",
+      "output": "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/build/intermediates/cxx/Debug/6j5c3k12/obj/armeabi-v7a/libsanctuary_whisper.so",
+      "runtimeFiles": [
+        "/Users/parakramsingh/Library/Android/sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/darwin-x86_64/lib/clang/18/lib/linux/arm/libomp.so"
+      ]
+    },
+    "whisper::@1c8dd6753170a826aa63": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "whisper",
+      "output": "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/Debug/6j5c3k12/armeabi-v7a/_deps/whispercpp-build/src/libwhisper.a"
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/Users/parakramsingh/Library/Android/sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang.lld",
+      "cppCompilerExecutable": "/Users/parakramsingh/Library/Android/sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

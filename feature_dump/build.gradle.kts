@@ -74,6 +74,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.koin.android)
             implementation(libs.sqldelight.android.driver)
+            implementation(libs.androidx.work.runtime.ktx)
         }
 
         sourceSets.named("iosMain").configure {

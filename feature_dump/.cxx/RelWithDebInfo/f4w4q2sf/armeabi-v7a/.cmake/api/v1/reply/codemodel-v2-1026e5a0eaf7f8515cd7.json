@@ -1,0 +1,211 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-RelWithDebInfo-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "_deps/whispercpp-build",
+					"childIndexes" : 
+					[
+						2,
+						5
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.whispercpp-build-RelWithDebInfo-a5a9f149760f8a380345.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/armeabi-v7a/_deps/whispercpp-src"
+				},
+				{
+					"build" : "_deps/whispercpp-build/ggml",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.whispercpp-build.ggml-RelWithDebInfo-ecc4691f43a7a2332fac.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/armeabi-v7a/_deps/whispercpp-src/ggml"
+				},
+				{
+					"build" : "_deps/whispercpp-build/ggml/src",
+					"childIndexes" : 
+					[
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.whispercpp-build.ggml.src-RelWithDebInfo-ab43dee3e520b77238f7.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 2,
+					"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/armeabi-v7a/_deps/whispercpp-src/ggml/src",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"build" : "_deps/whispercpp-build/ggml/src/ggml-cpu",
+					"jsonFile" : "directory-_deps.whispercpp-build.ggml.src.ggml-cpu-RelWithDebInfo-4454b958693d98caaebf.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 2,
+					"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/armeabi-v7a/_deps/whispercpp-src/ggml/src/ggml-cpu"
+				},
+				{
+					"build" : "_deps/whispercpp-build/src",
+					"jsonFile" : "directory-_deps.whispercpp-build.src-RelWithDebInfo-bfceb8942ec010a52a10.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/armeabi-v7a/_deps/whispercpp-src/src",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "sanctuary_whisper",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1,
+						5
+					],
+					"name" : "whisper.cpp",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2,
+						3,
+						4
+					],
+					"name" : "ggml",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 3,
+					"id" : "ggml::@8dc812d35f23b3704781",
+					"jsonFile" : "target-ggml-RelWithDebInfo-116c06b164e97d3d4c26.json",
+					"name" : "ggml",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ggml-base::@8dc812d35f23b3704781",
+					"jsonFile" : "target-ggml-base-RelWithDebInfo-9439c3a9b2ea5f6a6a82.json",
+					"name" : "ggml-base",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ggml-cpu::@8dc812d35f23b3704781",
+					"jsonFile" : "target-ggml-cpu-RelWithDebInfo-6d84526d317b83144b1c.json",
+					"name" : "ggml-cpu",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sanctuary_whisper::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sanctuary_whisper-RelWithDebInfo-3b63fbd0a16574e03d01.json",
+					"name" : "sanctuary_whisper",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "whisper::@1c8dd6753170a826aa63",
+					"jsonFile" : "target-whisper-RelWithDebInfo-d77fc3f307b1c9cf855f.json",
+					"name" : "whisper",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/armeabi-v7a",
+		"source" : "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/src/androidMain/jni"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

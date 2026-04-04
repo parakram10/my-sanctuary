@@ -1,0 +1,58 @@
+{
+  "buildFiles": [
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/CMakeLists.txt",
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/CMakeLists.txt",
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/src/CMakeLists.txt",
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/ggml/src/ggml-cpu/CMakeLists.txt",
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-src/src/CMakeLists.txt",
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/src/androidMain/jni/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/parakramsingh/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/parakramsingh/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "ggml::@8dc812d35f23b3704781": {
+      "artifactName": "ggml",
+      "abi": "x86",
+      "output": "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-build/ggml/src/libggml.a",
+      "runtimeFiles": []
+    },
+    "whisper::@1c8dd6753170a826aa63": {
+      "artifactName": "whisper",
+      "abi": "x86",
+      "output": "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-build/src/libwhisper.a",
+      "runtimeFiles": []
+    },
+    "ggml-cpu::@8dc812d35f23b3704781": {
+      "artifactName": "ggml-cpu",
+      "abi": "x86",
+      "output": "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-build/ggml/src/libggml-cpu.a",
+      "runtimeFiles": []
+    },
+    "sanctuary_whisper::@6890427a1f51a3e7e1df": {
+      "artifactName": "sanctuary_whisper",
+      "abi": "x86",
+      "output": "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/build/intermediates/cxx/RelWithDebInfo/f4w4q2sf/obj/x86/libsanctuary_whisper.so",
+      "runtimeFiles": [
+        "/Users/parakramsingh/Library/Android/sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/darwin-x86_64/lib/clang/18/lib/linux/i386/libomp.so"
+      ]
+    },
+    "ggml-base::@8dc812d35f23b3704781": {
+      "artifactName": "ggml-base",
+      "abi": "x86",
+      "output": "/Users/parakramsingh/Desktop/Projects/Sanctuary/feature_dump/.cxx/RelWithDebInfo/f4w4q2sf/x86/_deps/whispercpp-build/ggml/src/libggml-base.a",
+      "runtimeFiles": []
+    }
+  }
+}
